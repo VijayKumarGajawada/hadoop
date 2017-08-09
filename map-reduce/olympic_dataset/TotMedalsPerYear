@@ -1,0 +1,59 @@
+package mapred.olympicsdata.programs;
+
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+import mapred.olympicsdata.programs.TotMedalsPerYear;
+
+public class TotMedalsPerYear {
+
+	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+		Configuration cobj = new Configuration();
+		Job jobj = Job.getInstance(cobj," ");
+		jobj.setJarByClass(TotMedalsPerYear.class);
+		jobj.setMapperClass(Map.class);
+		jobj.setReducerClass(Red.class);
+		jobj.setOutputKeyClass(Text.class);
+		jobj.setOutputValueClass(IntWritable.class);
+		FileInputFormat.addInputPath(jobj, new Path(args[0]));
+		FileSystem.get(cobj).delete(new Path(args[1]), true);
+		FileOutputFormat.setOutputPath(jobj, new Path(args[1]));
+		System.exit(jobj.waitForCompletion(true) ? 0 : 1);
+	}
+
+public static class Map extends Mapper<LongWritable,Text,Text,IntWritable>
+{
+	public void map(LongWritable key, Text value, Context contx) throws IOException, InterruptedException
+	{
+		String strValue = value.toString();
+		String[] valueArr = strValue.split("\t");
+		String year = valueArr[3];
+		int medals = Integer.parseInt(valueArr[9]);
+		contx.write(new Text(year), new IntWritable(medals));
+	}
+}
+
+public static class Red extends Reducer<Text,IntWritable,Text,IntWritable>
+{
+	public void reduce(Text key,Iterable<IntWritable> value, Context contx) throws IOException, InterruptedException
+	{
+		int sum = 0;
+		for(IntWritable i : value)
+		{
+			sum+=i.get();
+		}
+		contx.write(new Text(key), new IntWritable(sum));
+	}
+}
+}
