@@ -1,0 +1,28 @@
+1. Movie FB likes vs Director FB likes.
+2. Cast total FB likes vs Num of voted users.
+3. Movie FB likes vs Cast total FB likes .
+4. Avg IMDB score per year.
+5. Avg movie duration per year.
+6. Number of movies released per year.
+7. Number of movies released in each country.
+8. Top 5 Highest budget movies per country.
+9. Top 5 Highest grossed movies per country.
+10. Top 10 Highest user voted films per language vs IMDB score.
+11. Top 3 Highest IMDB scored film in each language.
+12. Top 5 IMDB scores of movies with Box office losses per year. (English only)
+13. Top 10 IMDB scores of movies with Box office losses of all time. (English only)
+14. Top 20 Most common plot keyword of all time.
+15. Number of B&W and color movies released.
+16. Top 10 B&W films highest user voted vs IMDB score.
+17. Top 10 B&W films highest number of critic reviews vs IMDB score
+18. Top 10 highest IMDB scored B&W films.
+19. Movies with IMDB score above 9.
+20. Top 10 films highest number of critic reviews vs IMDB score
+21. Top 10 films highest user voted vs IMDB score.
+22. Top 10 FB likes – Movies with IMDB scores
+23. Top 10 FB likes - Director. with IMDB scores
+24. Top 10 FB likes – Actor 1. with IMDB scores
+25. Top 10 FB likes – Actor 2. with IMDB scores
+26. Top 10 FB likes – Actor 3. with IMDB scores
+27. Top 10 highest budget movies and their genres.
+28. 
