@@ -1,0 +1,14 @@
+1. Season wise table toppers. (team with highest match wins).
+2. Teams in the last 3 positions per season. (team with least match wins).
+3. Stadium where most/least matches were held per season.
+4. Player of the series per season. (player who won most player of matches in a season)
+5. Player who was the Player of the match the most times in the history of IPL.
+6. Number of times a team won/lost toss at home ground. (W/L)
+7. Number of times a team won/lost toss at visiting ground.
+8. Number of times a team won/lost matches at home ground.
+9. Number of times a team won/lost matches at visiting ground.
+10. Teams who won matches with DL applied per season.
+11. Best chasing team per season.  (win by wickets)
+12. Best defending team per season. (win by runs)
+13. Every team’s most choosen toss decision.(stadium wise).
+14. Team who won most matches along with winning toss.
