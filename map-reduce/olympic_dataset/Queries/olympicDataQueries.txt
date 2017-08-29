@@ -1,0 +1,8 @@
+1. Total medals per year.
+2. Total medals per year per nation.
+3. Total number of nations participated in the olympics.
+4. Athelete with highest medals per nation.
+5. Athelete with highest gold medals per nation.
+6. Country with highest gold,silver,bronze medals.
+7. Games which have highest number of medals per nation.
+8. Games which have highest number of gold medals per year per nation.
