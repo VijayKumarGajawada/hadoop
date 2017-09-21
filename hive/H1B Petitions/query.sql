@@ -10,7 +10,7 @@ FROM (SELECT *,row_number() OVER (PARTITION BY year ORDER BY cnt DESC) AS rn
             GROUP BY year,job_title,worksite) a) b 
 WHERE b.rn=1;
 
-***********************
+--------------
 b)
 SELECT * 
 FROM (SELECT *,row_number() OVER (PARTITION BY year ORDER BY cnt DESC) AS rn 
@@ -22,14 +22,14 @@ WHERE b.rn<=5;
 ---------------------------------------
 
 8) Find the average Prevailing Wage for each Job for each Year (take part time and full time separate). Arrange the output in descending order - [Certified and Certified Withdrawn.]
-
+--full time
 SELECT *,row_number() OVER (PARTITION BY year ORDER BY avg DESC) AS rn 
 FROM (SELECT year,case_status,job_title,SUM(prevailing_wage)/COUNT(job_title) AS avg 
       FROM h1b_edt 
       WHERE full_time='Y' AND case_status IN ('CERTIFIED','CERTIFIED-WITHDRAWN') 
       GROUP BY year,job_title,case_status) a;
 
-
+--part time
 SELECT *,row_number() OVER (PARTITION BY year ORDER BY avg DESC) AS rn 
 FROM (SELECT year,case_status,job_title,SUM(prevailing_wage)/COUNT(job_title) AS avg 
       FROM h1b_edt 
