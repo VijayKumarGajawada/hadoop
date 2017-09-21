@@ -19,7 +19,7 @@ FROM (SELECT *,row_number() OVER (PARTITION BY year ORDER BY cnt DESC) AS rn
             GROUP BY year,case_status,worksite) a) b 
 WHERE b.rn<=5;
 
----------------------------------------
+-------------------------------------------
 
 8) Find the average Prevailing Wage for each Job for each Year (take part time and full time separate). Arrange the output in descending order - [Certified and Certified Withdrawn.]
 --full time
@@ -37,6 +37,7 @@ FROM (SELECT year,case_status,job_title,SUM(prevailing_wage)/COUNT(job_title) AS
       GROUP BY year,job_title,case_status) a;
 
 --------------------------------------------
+
 9) Which are the employers along with the number of petitions who have the success rate more than 70%  in petitions. (total petitions filed 1000 OR more than 1000) ?
  
 SELECT * 
