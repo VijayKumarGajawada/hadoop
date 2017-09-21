@@ -44,7 +44,7 @@ public static class MyMapper extends Mapper<LongWritable,Text,Text,IntWritable>
 		String job_title = valueArr[4];
 		if(case_status.matches("CERTIFIED") && job_title.matches("DATA SCIENTIST"))
 		{
-			context.write(new Text(soc_name+"_"+job_title), new IntWritable(1));
+			context.write(new Text(soc_name), new IntWritable(1));
 		}
 	}
 }
