@@ -1,3 +1,6 @@
+--1 a) Is the number of petitions with Data Engineer job title increasing over time?
+----b) Find top 5 job titles who are having highest avg growth in applications.[ALL]
+
 data = LOAD 'hdfs://localhost:54310/user/project' USING PigStorage('\t') AS 
              (s_no:int, case_status:chararray, employer_name:chararray, soc_name:chararray, 
              job_title:chararray, full_time:chararray, prevailing_wage:int, 
