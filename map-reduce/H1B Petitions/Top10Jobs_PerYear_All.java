@@ -50,10 +50,10 @@ public static class MyMapper extends Mapper<LongWritable,Text,Text,Text>
 
 public static class MyReducer extends Reducer<Text,Text,Text,Text>
 {
-	HashMap<String,Integer> hMap = new HashMap<>();
-	TreeMap<Integer,String> tMap = new TreeMap<>();
 	public void reduce(Text key,Iterable<Text> values, Context context) throws IOException, InterruptedException
 	{
+		HashMap<String,Integer> hMap = new HashMap<>();
+		TreeMap<Integer,String> tMap = new TreeMap<>();
 		for(Text val : values)
 		{
 			String valArr[] = val.toString().split("%%");
@@ -84,3 +84,4 @@ public static class MyReducer extends Reducer<Text,Text,Text,Text>
 	}
 }
 }
+
