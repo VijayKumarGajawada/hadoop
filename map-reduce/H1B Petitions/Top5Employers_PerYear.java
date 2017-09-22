@@ -1,7 +1,5 @@
 //4)Which top 5 employers file the most petitions each year? - Case Status – ALL
 
-package project.h1b.programs;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
