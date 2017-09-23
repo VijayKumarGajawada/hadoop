@@ -53,3 +53,29 @@ growth_cycle = FOREACH only_job_counts GENERATE $0,(double)($2-$1)/$1*100,
                                                    (double)($6-$5)/$5*100; 
 avg_growth_cycle = FOREACH growth_cycle GENERATE $0,($1+$2+$3+$4+$5)/5 AS avg;
 top5_jobs = LIMIT (ORDER avg_growth_cycle BY avg DESC) 5;
+dump top5_jobs;
+
+
+--7) Create a bar graph to depict the number of applications for each year [All] 
+
+data = LOAD 'hdfs://localhost:54310/user/project' USING PigStorage('\t') AS 
+             (s_no:int, case_status:chararray, employer_name:chararray, soc_name:chararray, 
+             job_title:chararray, full_time:chararray, prevailing_wage:int, 
+             year:chararray, worksite:chararray, lon:double, lat:double);
+year_grp = GROUP data BY year;
+year_count = FOREACH year_grp GENERATE $0,COUNT($1);
+dump year_count;
+
+
+--5) Which industry(SOC_NAME) has the most number of Data Scientist positions?[certified]
+
+data = LOAD 'hdfs://localhost:54310/user/project' USING PigStorage('\t') AS 
+             (s_no:int, case_status:chararray, employer_name:chararray, soc_name:chararray, 
+             job_title:chararray, full_time:chararray, prevailing_wage:int, 
+             year:chararray, worksite:chararray, lon:double, lat:double);
+only_certi_DataSci = FILTER data BY (case_status == 'CERTIFIED') AND (job_title == 'DATA SCIENTIST');  
+soc_ds = FOREACH only_certi_DataSci GENERATE soc_name,job_title;
+soc_grp = GROUP soc_ds BY soc_name;
+counts = FOREACH soc_grp GENERATE $0,COUNT($1) AS cnt;
+top_soc = LIMIT (ORDER counts BY cnt DESC) 1;
+dump top_soc;
