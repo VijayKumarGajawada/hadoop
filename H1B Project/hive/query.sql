@@ -1,7 +1,7 @@
-2 a) Which part of the US has the most Data Engineer jobs for each year?
-   b) find top 5 locations in the US who have got certified visa for each year.[certified]
+--2 a) Which part of the US has the most Data Engineer jobs for each year?
+  -- b) find top 5 locations in the US who have got certified visa for each year.[certified]
 
-a)
+--a)
 SELECT * 
 FROM (SELECT *,row_number() OVER (PARTITION BY year ORDER BY cnt DESC) AS rn 
       FROM (SELECT year,job_title,worksite,COUNT(*) AS cnt 
@@ -11,7 +11,7 @@ FROM (SELECT *,row_number() OVER (PARTITION BY year ORDER BY cnt DESC) AS rn
 WHERE b.rn=1;
 
 --------------
-b)
+--b)
 SELECT * 
 FROM (SELECT *,row_number() OVER (PARTITION BY year ORDER BY cnt DESC) AS rn 
       FROM (SELECT year,case_status,worksite,COUNT(*) AS cnt 
@@ -21,7 +21,7 @@ WHERE b.rn<=5;
 
 -------------------------------------------
 
-8) Find the average Prevailing Wage for each Job for each Year (take part time and full time separate). Arrange the output in descending order - [Certified and Certified Withdrawn.]
+--8) Find the average Prevailing Wage for each Job for each Year (take part time and full time separate). Arrange the output in descending order - [Certified and Certified Withdrawn.]
 --full time
 SELECT *,row_number() OVER (PARTITION BY year ORDER BY avg DESC) AS rn 
 FROM (SELECT year,case_status,job_title,SUM(prevailing_wage)/COUNT(job_title) AS avg 
@@ -38,7 +38,7 @@ FROM (SELECT year,case_status,job_title,SUM(prevailing_wage)/COUNT(job_title) AS
 
 --------------------------------------------
 
-9) Which are the employers along with the number of petitions who have the success rate more than 70%  in petitions. (total petitions filed 1000 OR more than 1000) ?
+--9) Which are the employers along with the number of petitions who have the success rate more than 70%  in petitions. (total petitions filed 1000 OR more than 1000) ?
  
 SELECT * 
 FROM (SELECT a.employer_name,COUNT(case_status),COUNT(case_status)/b.total*100 AS sucperc 
@@ -52,7 +52,7 @@ ORDER BY sucperc DESC;
 
 ---------------------------------------------
 
-10) Which are the job positions along with the number of petitions which have the success rate more than 70%  in petitions (total petitions filed 1000 OR more than 1000)? 
+--10) Which are the job positions along with the number of petitions which have the success rate more than 70%  in petitions (total petitions filed 1000 OR more than 1000)? 
 
 SELECT * 
 FROM (SELECT a.job_title,COUNT(case_status),COUNT(case_status)/b.total*100 AS sucperc 
