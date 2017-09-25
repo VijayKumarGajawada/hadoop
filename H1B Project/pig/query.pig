@@ -67,7 +67,7 @@ year_count = FOREACH year_grp GENERATE $0,COUNT($1);
 dump year_count;
 
 
---5) Which industry(SOC_NAME) has the most number of Data Scientist positions?[certified]
+--3) Which industry(SOC_NAME) has the most number of Data Scientist positions?[certified]
 
 data = LOAD 'hdfs://localhost:54310/user/project' USING PigStorage('\t') AS 
              (s_no:int, case_status:chararray, employer_name:chararray, soc_name:chararray, 
