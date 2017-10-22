@@ -31,3 +31,5 @@ END, REGEXP_REPLACE(TRIM(employer_name),"\t",""), REGEXP_REPLACE(TRIM(soc_name),
 
 INSERT OVERWRITE TABLE h1b_edt
 SELECT s_no,case_status,employer_name,soc_name,job_title,full_time,CASE WHEN prevailing_wage IS NULL THEN 100000 ELSE prevailing_wage END,year,worksite,lon,lat FROM h1b_2; 
+
+--------------------------------------
